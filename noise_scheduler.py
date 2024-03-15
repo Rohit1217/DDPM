@@ -15,21 +15,17 @@ import math
 
 im_data=get_mnist_(normalize=True)
 
+def get_acost(t):
+  s=0.008
+  t=t/1000
+  t=(t+s)/(1+s)
+  t0=s/(1+s)
+  f_s=math.pow(math.cos(t*((math.pi)/2)),2)
+  f_0=math.pow(math.cos(t0*((math.pi)/2)),2)
+  at=f_s/f_0
+  return at
+
 def get_at(t):
-  #s=0.008
-  #t=t/1000
-  #t=(t+s)/(1+s)
-  #t0=s/(1+s)
-  #f_s=math.pow(math.cos(t*((math.pi)/2)),2)
-  #f_0=math.pow(math.cos(t0*((math.pi)/2)),2)
-  #at=f_s/f_0
-  #s=0.008
-  #t=t/1000
-  #t=(t+s)/(1+s)
-  #t0=s/(1+s)
-  #f_s=math.pow(math.cos(t*((math.pi)/2)),2)
-  #f_0=math.pow(math.cos(t0*((math.pi)/2)),2)
-  #at=f_s/f_0
   T=1000
   at=1
   for i in range(t):
@@ -44,37 +40,7 @@ def noise_scheduler(x0,epsilon_noise,t):
   xt=math.sqrt(at)*x0+math.sqrt(1-at)*epsilon_noise
   return xt
 
-'''trainloader=get_cifar10()
-for img,_ in trainloader:
-  x=img[:64]
-  break
-y=x*0.5+0.5
-y=y.permute(0,2,3,1)
-y=y.view(8,8,31,31,3)
-y = y.numpy()
-# Create a figure and a set of subplots arranged in an 8x8 grid
-fig, axes = plt.subplots(8, 8, figsize=(8, 8))
-# Iterate through the subplots and display each image
-for i in range(8):
-    for j in range(8):
-        axes[i, j].imshow(y[i,j])  # Normalize pixel values to [0, 1]
-        axes[i, j].axis('off')  # Turn off axis labels
-plt.savefig('samples.jpeg')
-plt.show()'''
 
-'''for t in range(0,1000,5):
-  noise=torch.randn(3,31,31)
-  x=noise_scheduler(x,noise,t)
-  y=y*0.5+0.5
-  y=x.permute(1,2,0)
-  y=y.numpy()
-
-print(y)
-
-plt.figure(figsize=(5, 5))
-plt.imshow(y)
-plt.axis('off')
-plt.show()'''
 
 
 
