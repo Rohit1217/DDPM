@@ -171,9 +171,9 @@ class Unet(nn.Module):
     x=self.conv2(x)
     return x
 
-unet=Unet(1,16,2)
-x=torch.randn(2,1,31,31)
-print(unet(x).shape)
+'''unet=Unet(3,16)
+x=torch.randn(2,3,31,31)
+print(unet,unet(x).shape)'''
 '''for i in range(3):
   x=torch.randn(2,1,31,31)
   y=torch.randn(2,1,31,31)

@@ -19,7 +19,6 @@ def get_mnist_(quantize=256,normalize=False,device='cpu',shift=False,flatten=Fal
   quant=(256.0/quantize)
   data=(trainset.data)//quant
 
-
   if normalize:
     mean = quantize//2
     var =  quantize-quantize//2
@@ -33,5 +32,22 @@ def get_mnist_(quantize=256,normalize=False,device='cpu',shift=False,flatten=Fal
     data = torch.cat((new_column, data[:, :-1]), dim=1)
 
   data=data.to(device)
-
   return data
+
+
+
+def get_cifar10(normalize=True,device='cpu',size=31):
+    transform = transforms.Compose([
+      transforms.ToTensor(),
+      transforms.Lambda(lambda x: x[:, 1:, 1:]),
+      transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
+    ])
+
+    trainset = datasets.CIFAR10(root='./data', train=True, download=True, transform=transform)
+    trainloader = torch.utils.data.DataLoader(trainset, batch_size=64, shuffle=True)
+    return trainloader
+
+''' for img,_ in get_cifar10():
+  x=img[:64]
+  print(x[0])
+  break '''
