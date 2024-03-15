@@ -174,16 +174,3 @@ class Unet(nn.Module):
 '''unet=Unet(3,16)
 x=torch.randn(2,3,31,31)
 print(unet,unet(x).shape)'''
-'''for i in range(3):
-  x=torch.randn(2,1,31,31)
-  y=torch.randn(2,1,31,31)
-
-  loss=nn.MSELoss()
-  optimizer=optim.Adam(unet.parameters(),lr=0.001)
-  pred_x=unet(x)
-  loss_val=loss(pred_x,y)
-
-  loss_val.backward(retain_graph=True)
-  optimizer.step()
-  optimizer.zero_grad()
-  print(loss_val.item())'''
