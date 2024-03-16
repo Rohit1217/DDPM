@@ -17,13 +17,13 @@
 * One additional conv is put at input and final output layer to change image dimension from 1x31*31 to 16*31*31 and vice-versa
 
 ## Noise Scheduler
-* We use a scheduler with constant alpha=0.99 to make the implementation simple
+* We use a Linear scheduler with constant as proposed in DDPM paper.
 * At time step t we turn image x0 to xt using xt= sqrt(alpha^t)*x0 + sqrt(1-alpha^t)*epsilon where epsilon is random noise
 * The alpha term decays to zero as t increases and diffuses the image to gaussian with mean 0 and variance 1
 
 ## Inference
 * We take a random noise vector
-* We slowly diffuse it backwards for 500 steps to get the resulting images
+* We slowly diffuse it backwards for 1000 steps to get the resulting images
 * More details about the sampler is in the code
   
 ## Psuedocode(Training)
