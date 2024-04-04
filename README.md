@@ -40,7 +40,8 @@
 
 
 ## Samples Generated
- ![Samples](sample.jpeg)
+ ![Samples_mnist](sample.jpeg)
+ ![Sample_cifar](samples.jpeg)
  
 ## Future changes/work
 * Cleaning the code to make it more readable and efficient
